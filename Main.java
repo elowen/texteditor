@@ -10,8 +10,6 @@ public class Main {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JTextArea textbox = new JTextArea();
-		
-		
 		JMenuBar menubar = new JMenuBar();
 		
 		JMenu file = new JMenu("File");
