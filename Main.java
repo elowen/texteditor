@@ -14,6 +14,8 @@ public class Main {
 		
 		JMenu file = new JMenu("File");
 		
+		JMenuItem search= new JMenuItem("Search");
+
 		JMenuItem load = new JMenuItem("Load");
 		
 		JMenuItem save = new JMenuItem("Save");
@@ -33,8 +35,12 @@ public class Main {
 		
 		JMenuItem paste = new JMenuItem("Paste");
 		
+		JMenuItem undo = new JMenuItem("Undo");
+		
+		JMenuItem redo = new JMenuItem("Redo");		
 		
 		//Launch everything
+		file.add(search);
 		file.add(load);
 		file.add(save);
 		file.add(exit);
@@ -42,6 +48,8 @@ public class Main {
 		edit.add(copy);
 		edit.add(cut);
 		edit.add(paste);
+		edit.add(undo);
+		edit.add(redo);
 		menubar.add(edit);
 		frame.add(textbox);
 		frame.setSize(300,200);
