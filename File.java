@@ -42,6 +42,7 @@ public class File {
 						BufferedReader br = new BufferedReader(reader);
 						
 						textbox.read( br, null );
+						textbox.getDocument().addUndoableEditListener(manager);
 						br.close();
 					}catch(Exception e3){}
 				}
