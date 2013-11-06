@@ -1,62 +1,53 @@
 import javax.swing.*;
+import javax.swing.text.Highlighter;
+import javax.swing.undo.UndoManager;
+import javax.swing.undo.*;
 
 import java.awt.event.*;
 
 public class Main {
 
+
 	public static void main(String[] args) {
-		JFrame frame = new JFrame("Text Editor");
-		
+
+		final JFrame frame = new JFrame("Text Editor");
+		final UndoManager manager = new UndoManager();
+
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		JTextArea textbox = new JTextArea();
+		final JTextArea textbox = new JTextArea();
+		
+		
 		JMenuBar menubar = new JMenuBar();
-		
-		JMenu file = new JMenu("File");
-		
-		JMenuItem search= new JMenuItem("Search");
 
-		JMenuItem load = new JMenuItem("Load");
-		
-		JMenuItem save = new JMenuItem("Save");
-		
-		JMenuItem exit = new JMenuItem("Exit");
-		exit.addActionListener(new ActionListener( ) {
-		      public void actionPerformed(ActionEvent e) {
-		        System.exit(0);
-		      }   
-		    }); 
-		
+		JMenu file = new JMenu("File");
+
+		File f =new File(file);
+		f.exit();
+		f.load(textbox,manager);
+		f.save(textbox);
+
 		JMenu edit = new JMenu("Edit");
-		
-		JMenuItem copy = new JMenuItem("Copy");
-		
-		JMenuItem cut = new JMenuItem("Cut");
-		
-		JMenuItem paste = new JMenuItem("Paste");
-		
-		JMenuItem undo = new JMenuItem("Undo");
-		
-		JMenuItem redo = new JMenuItem("Redo");		
-		
-		//Launch everything
-		file.add(search);
-		file.add(load);
-		file.add(save);
-		file.add(exit);
+		Edit e = new Edit(edit);
+		e.copy(textbox);
+		e.cut(textbox);
+		e.paste(textbox);
+		e.find(frame,textbox);
+		e.undo(manager);
+		e.redo(manager);
+		textbox.getDocument().addUndoableEditListener(manager);
+		frame.getContentPane().add(textbox);
+
 		menubar.add(file);
-		edit.add(copy);
-		edit.add(cut);
-		edit.add(paste);
-		edit.add(undo);
-		edit.add(redo);
+
 		menubar.add(edit);
-		frame.add(textbox);
-		frame.setSize(300,200);
+		//frame.add(textbox);
+		frame.setSize(500,500);
 		frame.setJMenuBar(menubar);
 		frame.setVisible(true);
-		
-		
+
+
 	}
+
 
 }
